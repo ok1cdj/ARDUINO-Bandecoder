@@ -1,6 +1,9 @@
 /* Kenwood Bandecoder
 by Ondrej Kolonicny OK1CDJ, ondra@ok1cdj.com
 
+v 1.1 13.9.2013 
+              - added BCD output like in YAESU RADIO to connect another accessories
+                WARNING - only standard bands like 80,40,20,15,10 are suported on other bands are all BCD pins in low state
 v 1.0 - 20.3.2013 
 
   This program is free software: you can redistribute it and/or modify
@@ -19,6 +22,23 @@ v 1.0 - 20.3.2013
 
 #define ALONE_MODE
 // uncomment this line if bandecoder is connected alone to the radio and not sniffing comunication
+
+// YEASU BCD
+ /*      A   B  C   D  dec
+ 160     0   0  0   1  1
+80       0   0  1   0  2
+40       0   0  1   1  3
+20       0   1  0   1  5
+15       0   1  1   1  7
+10       1   0  0   1  10
+
+ */
+//  IO port definition for BCD output
+int D=12;
+int C=13;
+int B=A0;
+int A=A1;
+
 
 int  inByte= -1;             // incoming byte from serial RX
 
@@ -76,6 +96,12 @@ void setup()
   pinMode(b10, OUTPUT);
 
   pinMode(b6, OUTPUT);
+  
+  pinMode(A, OUTPUT);
+  pinMode(B, OUTPUT);
+  pinMode(C, OUTPUT);
+  pinMode(D, OUTPUT);
+ 
   
   //Serial1.begin(9600);
 
@@ -149,7 +175,11 @@ if (qrg[1] == '1')
   digitalWrite(b12, LOW);
   digitalWrite(b10, LOW);
   digitalWrite(b6, LOW);
-
+  
+  digitalWrite(A, LOW);
+  digitalWrite(B, LOW);
+  digitalWrite(C, LOW);
+  digitalWrite(D, HIGH);
 }
 
 
@@ -169,6 +199,11 @@ if (qrg[1] == '3')
   digitalWrite(b12, LOW);
   digitalWrite(b10, LOW);
   digitalWrite(b6, LOW);
+  
+  digitalWrite(A, LOW);
+  digitalWrite(B, LOW);
+  digitalWrite(C, HIGH);
+  digitalWrite(D, LOW);
 
 }
 
@@ -190,6 +225,11 @@ if (qrg[1] == '7')
   digitalWrite(b10, LOW);
   digitalWrite(b6, LOW);
 
+  digitalWrite(A, LOW);
+  digitalWrite(B, LOW);
+  digitalWrite(C, HIGH);
+  digitalWrite(D, HIGH);
+  
 }
 
 
@@ -209,6 +249,11 @@ if ((qrg[0] == '1')&&(qrg[1] == '0'))
   digitalWrite(b12, LOW);
   digitalWrite(b10, LOW);
   digitalWrite(b6, LOW);
+  
+  digitalWrite(A, LOW);
+  digitalWrite(B, LOW);
+  digitalWrite(C, LOW);
+  digitalWrite(D, LOW);
 
 }
 
@@ -227,6 +272,11 @@ if ((qrg[0] == '1')&&(qrg[1] == '4'))
   digitalWrite(b12, LOW);
   digitalWrite(b10, LOW);
   digitalWrite(b6, LOW);
+  
+  digitalWrite(A, LOW);
+  digitalWrite(B, HIGH);
+  digitalWrite(C, LOW);
+  digitalWrite(D, HIGH);
 
 }
 
@@ -246,6 +296,11 @@ if ((qrg[0] == '1')&&(qrg[1] == '8'))
   digitalWrite(b12, LOW);
   digitalWrite(b10, LOW);
   digitalWrite(b6, LOW);
+  
+  digitalWrite(A, LOW);
+  digitalWrite(B, LOW);
+  digitalWrite(C, LOW);
+  digitalWrite(D, LOW);
 
 }
 
@@ -265,6 +320,11 @@ if ((qrg[0] == '2')&&(qrg[1] == '1'))
   digitalWrite(b12, LOW);
   digitalWrite(b10, LOW);
   digitalWrite(b6, LOW);
+  
+  digitalWrite(A, LOW);
+  digitalWrite(B, HIGH);
+  digitalWrite(C, HIGH);
+  digitalWrite(D, HIGH);
 }
 
 // 12m band
@@ -284,6 +344,10 @@ if ((qrg[0] == '2')&&(qrg[1] == '4'))
   digitalWrite(b10, LOW);
   digitalWrite(b6, LOW);
 
+  digitalWrite(A, LOW);
+  digitalWrite(B, LOW);
+  digitalWrite(C, LOW);
+  digitalWrite(D, LOW);  
 }
 
 // 10m band
@@ -302,6 +366,11 @@ if ((qrg[0] == '2')&&(qrg[1] == '8'))
   digitalWrite(b12, LOW);
   digitalWrite(b160, LOW);
   digitalWrite(b6, LOW);
+  
+  digitalWrite(A, HIGH);
+  digitalWrite(B, LOW);
+  digitalWrite(C, LOW);
+  digitalWrite(D, HIGH);
 }
 
 //6m band
@@ -320,6 +389,11 @@ if ((qrg[0] == '5')&&(qrg[1] == '0'))
   digitalWrite(b12, LOW);
   digitalWrite(b10, LOW);
   digitalWrite(b160, LOW);
+  
+  digitalWrite(A, LOW);
+  digitalWrite(B, LOW);
+  digitalWrite(C, LOW);
+  digitalWrite(D, LOW);
 }
 //CD.print(".");
 
