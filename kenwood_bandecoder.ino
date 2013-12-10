@@ -1,5 +1,18 @@
 /* Kenwood Bandecoder
-by Ondrej Kolonicny OK1CDJ, ondra@ok1cdj.com
+
+Tested with: TS-480, TS-590
+
+by Ondrej Kolonicny OK1CDJ, ondra@ok1cdj.com 
+
+http://www.remoteqth.com
+
+you can get KIT here: 
+http://hamshop.cz/remoteqth-com-c29/stavebnice-band-dekoderu-s-arduino-i230/
+
+Change log:
+
+v 1.1.1 10.12. 2O13
+              - minor change in serial comunication, now is source tested alos w
 
 v 1.1 13.9.2013 
               - added BCD output like in YAESU RADIO to connect another accessories
@@ -114,7 +127,7 @@ void loop() {
 
   Serial.flush();  // send request for frequency, use only when bandecoder is connected alone to the radio
 #ifdef ALONE_MODE
-    Serial.println("IF;");
+    Serial.print("IF;");
     
 #endif
   if (Serial.available() > 0 ) {
