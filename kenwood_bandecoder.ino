@@ -10,6 +10,9 @@ you can get KIT here:
 http://hamshop.cz/remoteqth-com-c29/stavebnice-band-dekoderu-s-arduino-i230/
 
 Change log:
+v 1.1.3 17.2.2014 
+              - added 29 MHz and 51 and 52 MHz as 10m and 6m output TNX to Adam OK2IPW              
+
 v 1.1.2 19.1.2014
               - solved bug in BCD output TNX to Frank - IZ4YDF	
 
@@ -91,7 +94,7 @@ void setup()
 
 {
 
-  Serial.begin(57600); //  nastav si rychlost
+  Serial.begin(57600); //  setup serial speed
 
   pinMode(b160, OUTPUT);
 
@@ -389,6 +392,28 @@ if ((qrg[0] == '2')&&(qrg[1] == '8'))
   digitalWrite(D, HIGH);
 }
 
+if ((qrg[0] == '2')&&(qrg[1] == '9'))
+
+{
+
+  digitalWrite(b10, HIGH);
+  digitalWrite(b80, LOW);
+  digitalWrite(b40, LOW);
+  digitalWrite(b30, LOW);
+  digitalWrite(b20, LOW);
+  digitalWrite(b17, LOW);
+  digitalWrite(b15, LOW);
+  digitalWrite(b12, LOW);
+  digitalWrite(b160, LOW);
+  digitalWrite(b6, LOW);
+  
+  digitalWrite(A, HIGH);
+  digitalWrite(B, LOW);
+  digitalWrite(C, LOW);
+  digitalWrite(D, HIGH);
+}
+
+
 //6m band
 
 if ((qrg[0] == '5')&&(qrg[1] == '0'))
@@ -411,6 +436,49 @@ if ((qrg[0] == '5')&&(qrg[1] == '0'))
   digitalWrite(C, LOW);
   digitalWrite(D, HIGH);
 }
+
+if ((qrg[0] == '5')&&(qrg[1] == '1'))
+
+{
+
+  digitalWrite(b6, HIGH);
+  digitalWrite(b80, LOW);
+  digitalWrite(b40, LOW);
+  digitalWrite(b30, LOW);
+  digitalWrite(b20, LOW);
+  digitalWrite(b17, LOW);
+  digitalWrite(b15, LOW);
+  digitalWrite(b12, LOW);
+  digitalWrite(b10, LOW);
+  digitalWrite(b160, LOW);
+  
+  digitalWrite(A, LOW);
+  digitalWrite(B, HIGH);
+  digitalWrite(C, LOW);
+  digitalWrite(D, HIGH);
+}
+
+if ((qrg[0] == '5')&&(qrg[1] == '2'))
+
+{
+
+  digitalWrite(b6, HIGH);
+  digitalWrite(b80, LOW);
+  digitalWrite(b40, LOW);
+  digitalWrite(b30, LOW);
+  digitalWrite(b20, LOW);
+  digitalWrite(b17, LOW);
+  digitalWrite(b15, LOW);
+  digitalWrite(b12, LOW);
+  digitalWrite(b10, LOW);
+  digitalWrite(b160, LOW);
+  
+  digitalWrite(A, LOW);
+  digitalWrite(B, HIGH);
+  digitalWrite(C, LOW);
+  digitalWrite(D, HIGH);
+}
+
 
  for (int c = 0; c < bufferPos; c++) {
 
