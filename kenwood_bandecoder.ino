@@ -179,7 +179,7 @@ qrg = str_if.substring(5,10);
 //na tretim miste ma byt 1 pak do jde na HIGH
 
 // 160m band
-if (qrg[1] == '1')
+if ((qrg[0] == '0')&&(qrg[1] == '1'))
 
 {
  
